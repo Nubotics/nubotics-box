@@ -1,0 +1,61 @@
+upstream nodejs_backend {
+    server 127.0.0.1:8080;
+    server 127.0.0.1:3000;
+}
+
+server {
+    listen {{ salt['pillar.get']('nginx:vhost:port', 80) }};
+     listen   [::]:{{ salt['pillar.get']('nginx:vhost:port', 80) }} default_server ipv6only=on; 
+    server_name localhost;
+    
+    root /var/www/application/;
+
+    location /
+    {
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_pass http://nodejs_backend/;
+        proxy_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade"; 
+    }
+
+    rewrite ^([^.]*[^/])$ $1/ permanent;
+
+    location @php {
+        rewrite ^/php([^.]*)$ /index.php?q=$uri&$args;
+    }
+
+
+    location ~* /php {
+        index index.php;
+        try_files $uri $uri/ @php;
+        #alias /var/www/application/php;
+
+        location ~* \.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            include fastcgi_params;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+       
+        }
+
+    }
+
+
+{% if salt['pillar.get']('nginx:vhost:cache_static_files', 'off') == 'on' %}
+    location ~* \.(jpg|jpeg|gif|png|css|js|ico|woff|ttf|otf|eot|svg)$ {
+        access_log        off;
+        log_not_found     off;
+        expires           365d;
+    }
+{% endif %}
+
+
+    error_log {{ salt['pillar.get']('nginx:vhost:error_log', '/var/log/nginx/application_error.log') }};
+}

@@ -1,0 +1,6 @@
+configs:
+    use: 'staging'
+    staging:
+        token: '2907c9d98dd45469666b2ca26c238b010eaf826828ce301f90fab5e34a129cde'
+    production:
+        token: ''
