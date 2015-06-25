@@ -16,7 +16,7 @@ nginx:
       - file: /etc/nginx/sites-enabled/application
       - pkg: nginx
 
-/var/www/application/public:
+/var/www/application/:
   file:
     - directory
     - user: vagrant
