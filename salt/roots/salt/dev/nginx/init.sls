@@ -16,11 +16,11 @@ nginx:
       - file: /etc/nginx/sites-enabled/application
       - pkg: nginx
 
-/var/www/application/:
+/var/www/application/php:
   file:
     - directory
-    - user: vagrant
-    - group: vagrant
+    - user: www-data
+    - group: www-data
     - mode: 775
     - makedirs: True
 

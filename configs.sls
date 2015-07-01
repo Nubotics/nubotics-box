@@ -1,6 +1,6 @@
 nginx:
   conf:
-    user: "www-data"
+    user: "vagrant"
     worker_processes: 4
     worker_connections: 1024
     error_log:

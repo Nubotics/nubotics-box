@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Virtual Box
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"] # Lower if you feel the need.
+    vb.customize ["modifyvm", :id, "--memory", "4096"] # Lower if you feel the need.
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
   end
 
@@ -65,5 +65,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 end
-
-

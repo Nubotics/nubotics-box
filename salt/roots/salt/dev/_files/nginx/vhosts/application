@@ -5,7 +5,7 @@ upstream nodejs_backend {
 
 server {
     listen {{ salt['pillar.get']('nginx:vhost:port', 80) }};
-     listen   [::]:{{ salt['pillar.get']('nginx:vhost:port', 80) }} default_server ipv6only=on; 
+    listen   [::]:{{ salt['pillar.get']('nginx:vhost:port', 80) }} default_server ipv6only=on;
     server_name localhost;
     
     root /var/www/application/;
@@ -48,6 +48,10 @@ server {
 
     location /php/cms {
         try_files $uri $uri/php/cms /php/cms/index.php?q=$uri&$args;
+    }
+
+    location /php/cms/wp-admin {
+        try_files $uri $uri/php/cms/wp-admin /php/cms/wp-admin/index.php?q=$uri&$args;
     }
 
     location ~ \.php$ {
