@@ -33,7 +33,7 @@ php-ini:
   file:
     - directory
     - user: www-data
-    - group: vagrant
+    - group: www-data
     - mode: 775
     - makedirs: True
     - require:

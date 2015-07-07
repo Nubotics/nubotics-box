@@ -19,8 +19,8 @@ nginx:
 /var/www/application/php:
   file:
     - directory
-    - user: www-data
-    - group: www-data
+    - user: vagrant
+    - group: vagrant
     - mode: 775
     - makedirs: True
 
