@@ -229,5 +229,5 @@ $RECYCLE.BIN/
 build
 stats
 /nginx/sites-available/application
-/application/node/nio-modules-es6
+/application/node
 /application/php

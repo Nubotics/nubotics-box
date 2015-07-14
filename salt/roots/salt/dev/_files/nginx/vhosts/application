@@ -24,14 +24,13 @@ server {
         proxy_set_header Connection "upgrade"; 
     }
 
-    rewrite ^([^.]*[^/])$ $1/ permanent;
-
     location @php {
         rewrite ^/php([^.]*)$ /index.php$is_args$args;
     }
 
     location ^~ /php {
         index index.php;
+        rewrite ^([^.]*[^/])$ $1/ permanent;
         try_files $uri $uri/ @php;
         #alias /var/www/application/php;
 
@@ -47,10 +46,12 @@ server {
     }
 
     location /php/cms {
+        rewrite ^([^.]*[^/])$ $1/ permanent;
         try_files $uri $uri/php/cms /php/cms/index.php?q=$uri&$args;
     }
 
     location /php/cms/wp-admin {
+        rewrite ^([^.]*[^/])$ $1/ permanent;
         try_files $uri $uri/php/cms/wp-admin /php/cms/wp-admin/index.php?q=$uri&$args;
     }
 
