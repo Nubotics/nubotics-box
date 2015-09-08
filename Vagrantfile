@@ -52,6 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     salt.verbose = true
     salt.log_level = "debug"
     salt.run_highstate = true
+    salt.bootstrap_options = "-F -c /tmp -P"
   end
 
   # Digital Ocean
