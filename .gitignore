@@ -231,3 +231,5 @@ stats
 /nginx/sites-available/application
 /application/node
 /application/php
+
+*.box

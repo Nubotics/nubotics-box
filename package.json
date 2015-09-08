@@ -1,0 +1,24 @@
+{
+  "name": "nio-shelter-nubotics",
+  "version": "0.0.1",
+  "description": "The Nio shelter for nubotics projects",
+  "main": "nio.shelter.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "NODE_ENV=development node nio.shelter.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nubotics/nubotics-box.git"
+  },
+  "keywords": [
+    "nio"
+  ],
+  "author": "@Nubuck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nubotics/nubotics-box/issues"
+  },
+  "homepage": "https://github.com/Nubotics/nubotics-box#readme"
+}
